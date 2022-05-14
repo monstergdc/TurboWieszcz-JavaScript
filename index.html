@@ -1,0 +1,70 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="author" content="(c)2022 Jakub Noniewicz, Noniewicz.com" />
+<meta http-equiv="cache-control" content="no-cache" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TurboWieszcz++ w JavaScript w przeglądarce</title>
+<script src="turbowieszcz.js" type="text/javascript"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
+</head>
+<body onLoad="twrun();">
+
+<script>
+
+  var ile = 4; //ilość zwrotek (1-32)
+  var tryb_rym = 0; //rodzaj rymów (0=ABAB, 1=ABBA, 2=AABB)
+  var powtorzeniaOk = 0; //1 = powtórzenia dopuszczalne
+
+  function twrun()
+  {
+    var d = document.getElementById('poem');
+    //console.log('ile='+ile+' tryb_rym='+tryb_rym+' powtorzeniaOk='+powtorzeniaOk);
+    d.innerHTML = generate_poem(ile, tryb_rym, powtorzeniaOk);
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    var elements = e.target.elements;
+    for(var i = 0 ; i < elements.length ; i++){
+        var item = elements.item(i);
+        if (item.name == 'ile') ile = item.value;
+        if (item.name == 'rym') tryb_rym = item.value;
+        if (item.name == 'powt') powtorzeniaOk = item.value;
+    }
+    twrun();
+  }
+</script>
+
+<div style="float: left; border: 1px solid #ccc; background-color: #eee; font-size: 14pt; padding: 20px;">
+<form method="POST" action="" id="parform">
+Ilość zwrotek: <input type="number" id="ile" name="ile" value="4" min="1" max="32" style="width: 60px;">
+<br /><br />Rym: <select name="rym" id="rym" style="width: 70px;">
+<option value="0">ABAB</option><option value="1">ABBA</option><option value="2">AABB</option>
+</select>
+<br /><br />Powtórzenia: <select name="powt" id="powt" style="width: 70px;">
+<option value="0">NIE</option><option value="1">TAK</option>
+</select>
+
+
+
+<br /><br /><button type="subimt" style="padding: 16px;">Nowy wiersz</button>
+</form>
+</div>
+
+<div style="width: 40%; text-align: left; font-size: 15pt; border: 1px solid #ccc; margin:0 auto; padding: 20px;">
+<pre id="poem" style="font-family: 'Special Elite', cursive;"></pre>
+</div>
+
+<script>
+  const f = document.getElementById("parform");
+  f.addEventListener("submit", handleSubmit);
+</script>
+
+</body>
+</html>
