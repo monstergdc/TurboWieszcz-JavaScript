@@ -1,6 +1,6 @@
 ﻿
 /*
-TurboWieszcz++ in JavaScript, v1.0
+TurboWieszcz++ in JavaScript, v2.0
 (c)2022 Noniewicz.com, Jakub Noniewicz aka MoNsTeR/GDC
 
 based directly on (translated from): previous version written in C
@@ -22,6 +22,7 @@ Tested on:
 //updated: 20220513 2030-2150
 //updated: 20220514 0000-0015
 //updated: 20220514 1530-1700
+//updated: 20220904
 
 /* TODO:
 - all seems done
